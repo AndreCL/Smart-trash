@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }}</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="static/stylesheets/normalize.css">
+  <link rel="stylesheet" href="static/stylesheets/login.css">
+
+  <link rel="icon" href="/static/images/favicon.ico">
+
+</head>
+<body>
+<div class="wrapper" align="center" >
+  <form action="/login" method="POST" class="login">
+    <h1 class="title">{{ logtitle }}</h1>
+
+    <h2 class="fa fa-user"> Username:</h2>
+    <input type="text" name="user">
+
+    <h2 class="fa fa-key"> Password:</h2>
+    <input type="password" name="password">
+
+    <input type="submit" value="Go" class="gobut">
+  </form>
+
+  <footer>for more info <a target="blank" href="mailto:andre.cl@hotmail.com">contact us</a>
+  </footer>
+</div>
+
+</body>
+
+</html>

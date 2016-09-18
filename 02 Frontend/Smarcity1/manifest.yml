@@ -1,0 +1,11 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: eu-gb.mybluemix.net
+  name: Smarcity1
+  host: Smarcity1
+  disk_quota: 1024M
+  services:
+  - Cloudant NoSQL DB-06
+  buildpack: python_buildpack

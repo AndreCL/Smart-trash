@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="Andre Castro Lundin">
+    <link rel="icon" href="/static/images/favicon.ico">
+
+    <title>Smarcity</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+
+    <!-- for graphs -->
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/svg.jquery.js"></script>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/javascripts/pygal-tooltips.js"></script>
+
+    <!-- Bootstrap -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- maps -->
+    {% if screennum == 2 %}
+    {{"decoupled-map"|googlemap_js(37.4419, -122.1419, markers=[(37.4419, -122.1419)])}}
+    {{mymap.js}}
+    {{sndmap.js}}
+    {% endif %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Usually placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/static/js/jquery.min.js"><\/script>')</script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('map_main') }}">{{ title }}</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="mailto:andre.cl@hotmail.com">Contact us</a></li>
+                    <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                     {% if screennum == 3 %}
+                    <li class="active"><a href="{{ url_for('map_main') }}">Overview<span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('map_main') }}">Overview</a></li>
+                    {% endif %}
+                    {% if screennum == 0 %}
+                    <li class="active"><a href="{{ url_for('dashboard') }}">History<span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('dashboard') }}">History</a></li>
+                    {% endif %}
+                    {% if screennum == 1 %}
+                    <li class="active"><a href="{{ url_for('sensor', name='02014100') }}">Sensor<span class="sr-only">(current)</span></a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('sensor', name='02014100') }}">Sensor</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Add content here -->
+            {% block body %}
+            {% endblock %}
+
+            <footer class="footer">
+                <font size="1">
+                <p>_____________________</p>
+                <p>Smarcity version {{ version }}</p>
+                </font>
+            </footer>
+
+        </div>
+        </div>
+    </div>
+</body>
+</html>

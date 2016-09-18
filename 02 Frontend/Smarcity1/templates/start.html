@@ -1,0 +1,111 @@
+{% extends "dashboard.html" %}
+{% block body %}
+
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+    {% if screennum == 0 %}
+
+    <!-- Update it as we go-->
+    <!-- for feed -->
+    <script type=text/javascript>
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            </script>
+    <script type="text/javascript" src="/static/js/feed.js"></script>
+
+    <p>System time: <span id=time_now>{{ time_now }}</span></p>
+
+    <h2 class="sub-header">Current status</h2>
+
+    <span id="current_state">{{ current_state }}</span>
+
+    <h2 class="sub-header">History</h2>
+
+    <img src="{{ url_for('main_graph') }}" class="img-responsive" alt="Responsive image">
+
+
+    <h2 class="sub-header">Latest</h2>
+
+
+    <span id="all_data">{{ all_data }}</span>
+
+    {% elif screennum == 1 %}
+
+    <h1 class="page-header">{{ subtitle }}</h1>
+
+    <ul class="nav navbar-nav navbar-right">
+
+        <!--This is one button ctrlcctrlv to make one next ti it -->
+        <li><form action="/getjson.json" method="post" style="margin:10px"  target="_blank" >
+            <button type="submit" class="btn btn-default" >Download raw data (json)</button>
+        </form></li>
+
+    </ul>
+
+    <!--Pygal chart-->
+    <div>
+        {{ bar_chart.render()|safe }}
+    </div>
+
+    {% elif screennum == 3 %}
+
+    <h1 class="page-header">Welcome {{ user }}</h1>
+
+    <img src="{{ url_for('map_simple')|safe }}" class="img-responsive" alt="Responsive image">
+
+
+    <!-- Bin icons -->
+    <div class="row placeholders">
+
+        <div class="col-xs-6 col-sm-4 placeholder">
+
+        <!-- Today display -->
+    <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <div class="row">
+        <div class="col s12 m7">
+          <div class="card small">
+            <div class="card-image">
+              <img src="{{ icon }}" width="100px" height="100px">
+              <span class="card-title" style="color:black;" >{{ temperature }}</span>
+            </div>
+            <div class="card-content">
+              <p>{{ desc_icon }}</p>
+            </div>
+            <div class="card-action">
+              <p>Wind: {{ wind_direction_cardinal }} {{ wind_speed }}</p>
+                <p>Humidity: {{ humidity }}</p>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+
+        {% for req in data %}
+
+        <div class="col-xs-6 col-sm-2 placeholder">
+            <span class="text-muted">Node: {{ req[0] }}</span>
+            {% if req[1] < 50 %}
+            <img src="static/images/bin_default.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            {% elif req[1] < 75 %}
+            <img src="static/images/bin_yellow.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            {% else %}
+            <img src="static/images/bin_red.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+            {% endif %}
+            <h4>{{ req[1] }}%</h4>
+            <span class="text-muted"> {{ req[2] }} </span>
+
+        </div>
+
+
+
+        {% endfor %}
+
+    </div>
+    {% endif %}
+
+    {% endblock %}

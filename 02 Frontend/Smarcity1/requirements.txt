@@ -1,0 +1,8 @@
+Flask==0.10.1
+requests
+pygal
+flask_googlemaps
+cloudant==2.0.0b2
+numpy
+matplotlib
+Pillow
