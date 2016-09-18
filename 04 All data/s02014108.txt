@@ -1,0 +1,1 @@
+{"_id":"raw_data","_rev":"677-d354945617640a3c2fbe856e81ac904c","data":[{"node_eui":"02014100","datarate":"SF7BW125","gateway_eui":"FFFEB827EBFF31D1","data_raw":"QABBAQIAAAABfON37QUaUA==","frequency":868.1,"time":"2016-05-04T08:36:58.112Z","snr":-5.5,"data":"{0}","rssi":-121}]}
