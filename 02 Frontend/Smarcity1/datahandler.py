@@ -25,9 +25,9 @@ class Datahandler:
         self.latest_data = []
 
         # Connect to database
-        USERNAME = "c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix"
-        PASSWORD = "32a73373d2c43f117430b2669d1e6fa21b296cccd37aec1f8c669fe8f184faee"
-        URL="https://c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix:32a73373d2c43f117430b2669d1e6fa21b296cccd37aec1f8c669fe8f184faee@c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix.cloudant.com"
+        USERNAME = "" # ADD YOUR OWN
+        PASSWORD = "" # ADD YOUR OWN
+        URL="" #ADD YOUR OWN
         self.client = Cloudant(USERNAME, PASSWORD, url=URL)
         self.client.connect()
 
@@ -353,7 +353,7 @@ class Datahandler:
     def get_temp_data_latest(self):
         """Returns latest weather conditions"""
         # connect to weather HTTP
-        url = "https://080fc80f-877d-4132-b09a-f6dd26718c3b:cois5EiH3p@twcservice.eu-gb.mybluemix.net:443/api/weather/v2/observations/current?units=m&geocode=55.786779%2C12.525554&language=en-US"
+        url = "" # ADD YOUR OWN
         page = requests.get(url)
         page.encoding = 'utf-8'
 

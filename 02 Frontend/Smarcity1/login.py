@@ -38,9 +38,9 @@ class Login:
     def log_in(self, user, password):
 
         # Connect to database
-        USERNAME = "c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix"
-        PASSWORD = "32a73373d2c43f117430b2669d1e6fa21b296cccd37aec1f8c669fe8f184faee"
-        URL="https://c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix:32a73373d2c43f117430b2669d1e6fa21b296cccd37aec1f8c669fe8f184faee@c0ab0918-9cb3-4856-bfe7-4dbd6c6990e2-bluemix.cloudant.com"
+        USERNAME = "" # ADD YOUR OWN
+        PASSWORD = "" # ADD YOUR OWN
+        URL="" # ADD YOUR OWN
         self.client = Cloudant(USERNAME, PASSWORD, url=URL)
         self.client.connect()
 
